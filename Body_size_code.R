@@ -84,7 +84,14 @@ setDT(Total_Lizard_fossils5cmBIN)
 interval_lookup5 <- data.table(classes5, upper5,lower5)
 Total_Lizard_fossils5cmBIN<- Total_Lizard_fossils5cmBIN[interval_lookup5, Bin:=classes5, on=c("Level_min >= lower5","Level_max <= upper5")]
 
-times5cm <- read_csv("times5cm.csv") # READ IN AVERAGE AGE FOR EACH 5 CM BIN BASED ON AGE-DEPTH MODEL FROM BACON
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                                AGE-DEPTH MODEL                            ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+library(rbacon)
+set.seed(123)
+Bacon('HallsCave', youngest.age = 31, depths=seq(0, 350,
+                                                 length=350), run = FALSE) # set the youngest age as 31 ybp (aka 1993 CE)
+times5cm<-Bacon.hist(seq(from = 2.5, to = 300, by = 5)) # V1 = min, V2 = max, V3 = median, V4 = mean
 setDT(Total_Lizard_fossils5cmBIN)
 meanage5cm<-(times5cm[["V4"]])
 interval_lookup5age <- data.table(meanage5cm, upper5,lower5)

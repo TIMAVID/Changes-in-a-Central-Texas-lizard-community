@@ -13,7 +13,7 @@ library(rbacon)
 # RUN AGE-DEPTH MODEL
 set.seed(123)
 Bacon('HallsCave', youngest.age = 31, depths=seq(0, 350,
-                                                 length=350)) # set the youngest age as 31 ybp (aka 1993 CE)
+                                                 length=350), run = FALSE) # set the youngest age as 31 ybp (aka 1993 CE)
 
 # assign ages to mid-point of levels at 5-cm intervals
 times5cm<-Bacon.hist(seq(from = 2.5, to = 300, by = 5)) # V1 = min, V2 = max, V3 = median, V4 = mean
