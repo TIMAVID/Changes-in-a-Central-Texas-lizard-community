@@ -13,7 +13,7 @@ library(rbacon)
 # RUN AGE-DEPTH MODEL
 set.seed(123)
 Bacon('HallsCave', youngest.age = 31, depths=seq(0, 350,
-                                                 length=350), run = FALSE) # set the youngest age as 31 ybp (aka 1993 CE)
+                                                 length=350), run = FALSE, accept.suggestions=TRUE) # set the youngest age as 31 ybp (aka 1993 CE)
 
 # assign ages to mid-point of levels at 5-cm intervals
 times5cm<-Bacon.hist(seq(from = 2.5, to = 300, by = 5)) # V1 = min, V2 = max, V3 = median, V4 = mean
@@ -285,6 +285,7 @@ BreakBinSum_P <- filter(BreakBinSum, Position == "P") # postcranial completeness
 # CRANIAL
 break.dist_C <- dist(BreakBinSum_C$PctCompl) # distance matrix
 break.chclust_C <- chclust(break.dist_C, method="coniss") # Constrained hierarchical clustering
+dev.new()
 plot(break.chclust_C)
 bstick(break.chclust_C, ng=20, plot=TRUE) # hierarchical clustering comparison with broken stick model
 
@@ -721,7 +722,7 @@ NISPplotcompltpits_pct<- ggplot(NISPdf_compltpits_pct, aes(fill=taxa, y=per, x=y
   scale_fill_manual(name = "Family", values=c(famcolors)) +
   ylab("Relative Abundace Complete Pits") + xlab("Years BP")
 
-#~~ LIZARD FAMILY RIOJA CLUSTER PLOT
+###... LIZARD FAMILY CLUSTER ANALYSIS ----
 chron_liz_roja <- data.frame(Age=LIZNISP5cm.pct$Age[1:48])
 LIZNISP.pct_roja <- decostand(LIZNISP5cmBIN_wide_0[1:48,], "normalize")
 LIZNISP.pct_roja.ch <- vegdist(LIZNISP.pct_roja, "euc") # Chord distance
