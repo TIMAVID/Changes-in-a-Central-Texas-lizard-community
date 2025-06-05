@@ -106,7 +106,7 @@ Total_Lizard_fossils5cmBIN_wide <- Total_Lizard_fossils5cmBIN_wide %>%
   mutate(Classification = coalesce(MS_classification, Family))
 
 ## CREATING DIFFERENT FOSSIL DATASETS BASED ON IDENTIFICATIONS
-Anguid_fossils <- filter(Total_Lizard_fossils5cmBIN_wide,grepl('Anguidae',Family)) # THIS IS FILTERING AND SELECTING ONLY FOSSILS THAT BELOONG TO THE FAMILY ANGUIDAE
+Anguid_fossils <- filter(Total_Lizard_fossils5cmBIN_wide,grepl('Anguidae',Family)) # THIS IS FILTERING AND SELECTING ONLY FOSSILS THAT BELONG TO THE FAMILY ANGUIDAE
 Gerrhonotine_fossils <- filter(Total_Lizard_fossils5cmBIN_wide,grepl('Gerrhonotus',MS_classification))
 Ophisaurus_fossils <- filter(Total_Lizard_fossils5cmBIN_wide,grepl('Ophisaurus',MS_classification))
 Ophisaurus_fossils <- Ophisaurus_fossils %>% select(!c(Frontal_SW, Frontal_PW))

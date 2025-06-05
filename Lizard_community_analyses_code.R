@@ -98,6 +98,7 @@ LIZ_PIT_VIZ <- LIZ_PIT_VIZ %>% group_by(Bin, Pit) %>% summarise(NISP = sum(NISP)
 LIZ_PIT_VIZ <- filter(LIZ_PIT_VIZ,grepl('1|1A|1B|1C|1DE',Pit)) #filter out uncertain identifications
 LIZ_PIT_VIZ <- filter(LIZ_PIT_VIZ,!grepl(',|1/2|East|West|Trench|Possibly',Pit)) #filter out uncertain provenance
 
+# Visualize fossil abundance by pit
 LIZ_PIT_VIZ_plot<-ggplot(LIZ_PIT_VIZ, aes(Bin, NISP))+ geom_point()+
   geom_line(colour="grey")+
   scale_x_reverse(breaks =seq(0,100,2))+
@@ -137,7 +138,7 @@ LIZNISP_Pit_wide <- spread(LIZNISP_Pit, Family, NISP)
 LIZNISP_Pit_wide[is.na(LIZNISP_Pit_wide)] <- 0
 LIZNISP_Pit_long<- tidyr::gather(LIZNISP_Pit_wide, Family, NISP, Anguidae:Teiidae, factor_key=TRUE)
 
-
+# absolute lizard family NISP by pit
 LIZVIZ2_plot<-ggplot(LIZNISP_Pit_long, aes(Age, NISP, fill= Family))+ # absolute lizard family NISP by pit
   geom_area()+
   #geom_bar(position="fill", stat="identity", width=800)+
@@ -148,6 +149,7 @@ LIZVIZ2_plot<-ggplot(LIZNISP_Pit_long, aes(Age, NISP, fill= Family))+ # absolute
   theme_classic(base_size = 17) +facet_grid(~LIZNISP_Pit_long$Pit,scales = "free", space = "free")
 LIZVIZ2_plot # absolute lizard family NISP by pit
 
+# relative abundance lizard family NISP by pit
 LIZVIZ3_plot<-ggplot(LIZNISP_Pit_long, aes(Age, NISP, fill= Family))+ # relative abundance lizard family NISP by pit
   geom_area(position = "fill", aes(fill = Family))+
   #geom_bar(position="fill", stat="identity", width=800)+
