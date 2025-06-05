@@ -436,7 +436,6 @@ Crotaphytidae_Fossil_estimates %>%
   stat_cor(aes(x = Age, y = SVL_estimate), formula = y ~ x, inherit.aes = FALSE ,label.y = 225)+
   stat_regline_equation(aes(x = Age, y = SVL_estimate), formula = y ~ x, inherit.aes = FALSE ,label.y = 175) + facet_wrap("Measurement_type")
 
-
 ###### Phrynosomatidae ######
 ggplot(Phrynosomatidae_Fossil_estimates, aes(x = Age, y = SVL_estimate, color = `lower identification`)) +
   geom_point(aes(color=`lower identification`),size = 4, position=position_jitter(width=50,height=0)) +
