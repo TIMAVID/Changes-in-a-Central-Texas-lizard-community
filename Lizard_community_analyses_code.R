@@ -1837,9 +1837,9 @@ Liz_Poll_Clim.h <- cbind(Liz_Poll_Clim.h, Poll_PCA)
 # Testing significance of Pollen PC axes using RDA
 LizPoll.RDA <- rda(Liz_Poll_Clim.h[,1:5] ~ .,
                    data = Poll_PCA[,1:7])
-anova.cca(LizPoll.RDA, step = 1000) ## Global test of the RDA result
-anova.cca(LizPoll.RDA, step = 1000, by = "term") ## Tests of all explanatory variables
-anova.cca(LizPoll.RDA, step = 1000, by = "axis") ## Tests of all canonical axes
+set.seed(123);anova.cca(LizPoll.RDA, step = 1000) ## Global test of the RDA result
+set.seed(123);anova.cca(LizPoll.RDA, step = 1000, by = "term") ## Tests of all explanatory variables
+set.seed(123);anova.cca(LizPoll.RDA, step = 1000, by = "axis") ## Tests of all canonical axes
 # forward selection
 set.seed(123)
 fwd.sel_Poll <- ordiR2step(rda(Liz_Poll_Clim.h[,1:5] ~ 1, data = Poll_PCA[,1:7]), # lower model limit (simple!)
@@ -1853,7 +1853,7 @@ fwd.sel_Poll$call # selected terms
 ## Global test of the RDA result
 set.seed(123)
 anova.cca(fwd.sel_Poll, step = 1000) ## Global test of the RDA result
-
+RsquareAdj(fwd.sel_Poll)
 
 # Parsimonious paleoclim variables from RDA selection
 VAR_clim.pars <-Liz_Poll_Clim.h %>% select("bio18_fit",  "bio17_fit",  "bio10_fit", "bio19_fit",  "bio12_fit")
