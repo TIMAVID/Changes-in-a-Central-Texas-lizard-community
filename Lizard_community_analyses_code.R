@@ -2437,3 +2437,42 @@ bio10_15_mplot <-ggplot(data=M_regional.paleoclim_proxies_pred, aes(x=bio10_fit,
 # plot together with local and regional proxies
 plot_grid(d13_dD_mplot, Ti_mplot,MS_mplot, MS_Ti_mplot, bio10_mplot, bio17_mplot, bio10_15_mplot, ncol = 3, labels = "auto", align = "hv",
           axis = "lr")
+
+
+
+# R version 4.3.0 (2023-04-21) ----
+# 
+# attached base packages:
+#   [1] grid      stats     graphics  grDevices utils     datasets  methods   base     
+# 
+# other attached packages:
+#   [1] diptest_0.77-0             ggpmisc_0.5.5              ggpp_0.5.6                 mdthemes_0.1.0            
+# [5] Hmisc_5.1-1                gridExtra_2.3              tidygam_0.2.0              itsadug_2.4.1             
+# [9] plotfunctions_1.4          corrplot_0.92              cocorresp_0.4-3            knitr_1.45                
+# [13] ggvegan_0.1.999            gratia_0.8.1               scam_1.2-14                mgcv_1.9-1                
+# [17] nlme_3.1-164               PerformanceAnalytics_2.0.4 xts_0.13.1                 zoo_1.8-12                
+# [21] pastclim_2.2.0             terra_1.8-29               bcp_4.0.3                  iNEXT_3.0.0               
+# [25] compositions_2.0-7         analogue_0.17-6            dendextend_1.17.1          riojaPlot_0.1-20          
+# [29] rioja_1.0-6                vegan_2.6-4                lattice_0.22-5             permute_0.9-7             
+# [33] ggpubr_0.6.0               cowplot_1.1.2              data.table_1.15.4          lubridate_1.9.3           
+# [37] forcats_1.0.0              stringr_1.5.1              dplyr_1.1.4                purrr_1.0.2               
+# [41] tidyr_1.3.1                tibble_3.2.1               tidyverse_2.0.0            readr_2.1.5               
+# [45] ggplot2_3.5.0              rbacon_3.2.0               rintcal_0.6.4             
+# 
+# loaded via a namespace (and not attached):
+#   [1] RColorBrewer_1.1-3 tensorA_0.36.2.1   rstudioapi_0.15.0  jsonlite_1.8.8     magrittr_2.0.3     farver_2.1.1      
+# [7] profileModel_0.6.1 rmarkdown_2.25     vctrs_0.6.5        base64enc_0.1-3    rstatix_0.7.2      htmltools_0.5.7   
+# [13] polynom_1.4-1      broom_1.0.5        Formula_1.2-5      sjmisc_2.8.10      htmlwidgets_1.6.4  princurve_2.1.6   
+# [19] plyr_1.8.9         commonmark_1.9.0   lifecycle_1.0.4    pkgconfig_2.0.3    sjlabelled_1.2.0   Matrix_1.6-5      
+# [25] R6_2.5.1           fastmap_1.1.1      digest_0.6.35      colorspace_2.1-0   patchwork_1.2.0    labeling_0.4.3    
+# [31] fansi_1.0.6        timechange_0.3.0   abind_1.4-5        compiler_4.3.0     bit64_4.0.5        withr_3.0.0       
+# [37] htmlTable_2.4.2    backports_1.4.1    carData_3.0-5      viridis_0.6.5      maps_3.4.2         ggsignif_0.6.4    
+# [43] MASS_7.3-60.0.1    bayesm_3.1-6       quantreg_5.97      tools_4.3.0        foreign_0.8-86     brglm_0.7.2       
+# [49] nnet_7.3-19        glue_1.7.0         quadprog_1.5-8     gridtext_0.1.5     checkmate_2.3.1    cluster_2.1.6     
+# [55] reshape2_1.4.4     generics_0.1.3     isoband_0.2.7      gtable_0.3.4       tzdb_0.4.0         hms_1.1.3         
+# [61] xml2_1.3.6         car_3.1-2          utf8_1.2.4         ggrepel_0.9.5      pillar_1.9.0       markdown_1.12     
+# [67] vroom_1.6.5        robustbase_0.99-1  splines_4.3.0      ggtext_0.1.2       survival_3.8-3     bit_4.0.5         
+# [73] SparseM_1.81       tidyselect_1.2.1   xfun_0.41          DEoptimR_1.1-3     stringi_1.8.3      evaluate_0.23     
+# [79] codetools_0.2-19   cli_3.6.2          rpart_4.1.23       munsell_0.5.1      Rcpp_1.0.12        coda_0.19-4       
+# [85] parallel_4.3.0     MatrixModels_0.5-3 mvnfast_0.2.8      viridisLite_0.4.2  scales_1.3.0       insight_0.20.1    
+# [91] crayon_1.5.2       rlang_1.1.3       
