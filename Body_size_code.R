@@ -5,12 +5,14 @@
 ##                                                                            ~~
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+library(curl)
 library(readr)
 library(dplyr) # AUSEFUL PACKAGE FOR CLEAING UP/ MANIPULATING DATA
 
 ##                     READ IN MODERN DATA                  ----
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Lizard_bone_measurements <- read_csv("Modern_Lizard bone measurements.csv") # READ THIS DATA IN FROM WHEREVER YOU SAVED IT ON YOUR COMPUTER E.G. "/Users/davidledesma/Downloads"
+gitbs1<- curl("https://raw.githubusercontent.com/TIMAVID/Changes-in-a-Central-Texas-lizard-community/refs/heads/main/Modern_Lizard%20bone%20measurements.csv")
+Lizard_bone_measurements <- read_csv(gitbs1) # READ THIS DATA IN
 Lizard_bone_measurements <- Lizard_bone_measurements %>% select(!c(`Occipital complex_WC`, Scapulocoracoid_HG, Femur_GL, Humerus_GL, Pelvis_HA, `Ilium crest_GL`))
 
 ## FILTER MODERN DATASET
@@ -70,7 +72,8 @@ Phrynosoma_lm <-bones.lm(varlist,Phrynosoma)
 
 ##                     READ IN FOSSIL DATA                  ----
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Total_Lizard_fossils <- Total_Lizard_fossils <- read_csv("Total_Lizard_fossils.csv", 
+gitbs2 <-  curl("https://raw.githubusercontent.com/TIMAVID/Changes-in-a-Central-Texas-lizard-community/refs/heads/main/Fossil_Lizard_measurements.csv")
+Total_Lizard_fossils <- Total_Lizard_fossils <- read_csv(gitbs2, 
                                                          col_types = cols(Specimen_Letter = col_character())) # READ IN THE DATAFAME FOR ALL OF THE FOSSIL MEASUREMENTS
 
 library(tidyverse)

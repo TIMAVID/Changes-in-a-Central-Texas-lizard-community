@@ -1,9 +1,11 @@
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ##                                Read in Fossil data                            ----
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+library(curl)
 library(ggplot2)
 library(readr)
-Fossil_lizards <- read_csv("Lizards database12_2_23.csv")
+gitcom1<- curl("https://raw.githubusercontent.com/TIMAVID/Changes-in-a-Central-Texas-lizard-community/refs/heads/main/Fossil%20Lizards%20database12_2_23.csv")
+Fossil_lizards <- read_csv(gitcom1)
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ##                                AGE-DEPTH MODEL                            ----
@@ -11,6 +13,7 @@ Fossil_lizards <- read_csv("Lizards database12_2_23.csv")
 library(rbacon)
 
 # RUN AGE-DEPTH MODEL
+# "https://github.com/TIMAVID/Changes-in-a-Central-Texas-lizard-community/tree/5d6eeb6e3ee27babc45647f2f3a655d5818cbe5d/Bacon_runs"
 set.seed(123)
 Bacon('HallsCave', youngest.age = 31, depths=seq(0, 350,
                                                  length=350), run = FALSE, accept.suggestions=TRUE) # set the youngest age as 31 ybp (aka 1993 CE)
@@ -839,8 +842,8 @@ Pollen.plot_MNIvsNISP_fill <- ggarrange(MNIplot.pct, NISPplot_fill,
 ##                                                                            --
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 library(readr)
-
-Regional_modern_lizards_50_km <- read_delim("Regional modern lizards 50 km.csv", # modern lizard records from Gbif within 50 square km of Hall's Cave
+gitcom2 <- curl("https://raw.githubusercontent.com/TIMAVID/Changes-in-a-Central-Texas-lizard-community/refs/heads/main/Regional%20modern%20lizards%2050%20km.csv")
+Regional_modern_lizards_50_km <- read_delim(gitcom2, # modern lizard records from Gbif within 50 square km of Hall's Cave
                                             delim = "\t", escape_double = FALSE, 
                                             trim_ws = TRUE)
 
@@ -985,7 +988,8 @@ bchange_plot<-ggplot(data=data_bcp, aes(x=Age, y=X1)) +
 library(dplyr)
 
 #~ POLLEN DATA .............................-------
-Total_Pollen_data_raw <- read_csv("Cordova_Pollen_data.csv")
+gitcom3 <- curl("https://raw.githubusercontent.com/TIMAVID/Changes-in-a-Central-Texas-lizard-community/refs/heads/main/Cordova_Pollen_data.csv")
+Total_Pollen_data_raw <- read_csv(gitcom3)
 Total_Pollen_data <- mutate(Total_Pollen_data_raw, Asteraceae_Tubuliflorae = `Aster type`+`Cirsium type`) # Asteraceae_Tubuliflorae is in publication but is not in the dataset. Aster type and Cirsium type are both a type of Asteraceae Tubuliflorae
 ## 5 cm intervals
 classes5 <- seq(from = 1, to = 60, by = 1)
@@ -1070,7 +1074,8 @@ addRPZone(lizard_pollen_rp, myzones, col="red")
 
 
 # ~ GRASS PHYTOLITH DATA .............................-------
-Grass_Phytolith_data <- read_csv("Grass_Phytolith_data.csv")
+gitcom4 <- curl("https://raw.githubusercontent.com/TIMAVID/Changes-in-a-Central-Texas-lizard-community/refs/heads/main/Cordova_Phytolith_data.csv")
+Grass_Phytolith_data <- read_csv(gitcom4)
 
 # summarize C3, C4 percents and relative Panicoid
 Grass_Phytolith_data <- mutate(Grass_Phytolith_data, C4_sum = (`Aristida-type bilobates`+Panicoid_total+Chloridoid_total))
@@ -1158,7 +1163,8 @@ Sr_label <- expression(Sr^{87}/Sr^{86})
 #~ Hall's Cave local paleoclimate----
 
 # carbon and duterium values from Sun et al. 2021
-Paleoclim_C_D <- read_csv("Paleoclim data.csv") # carbon and duterium values from Sun et al. 2021
+gitcom5 <- curl("https://raw.githubusercontent.com/TIMAVID/Changes-in-a-Central-Texas-lizard-community/refs/heads/main/Paleoclim_C_D_data.csv")
+Paleoclim_C_D <- read_csv(gitcom5) # carbon and duterium values from Sun et al. 2021
 # add new ages from age-depth model
 times_C_D<-Bacon.hist(seq(from = .5, to = 285.5, by = 1)) # V1 = min, V2 = max, V3 = median, V4 = mean
 times_C_D<- data.frame(times_C_D, Depth = seq(from = .5, to = 285.5, by = 1))
@@ -1170,7 +1176,8 @@ Paleoclim_C_D <- Paleoclim_C_D %>%
   )
 
 # magnetic suseptability from Ellwood and Gose 2006
-Elwood_Gose_maneticsusep <- read_csv("Elwood_Gose_maneticsusep.csv")
+gitcom6 <- curl("https://raw.githubusercontent.com/TIMAVID/Changes-in-a-Central-Texas-lizard-community/refs/heads/main/Elwood_Gose_maneticsusep.csv")
+Elwood_Gose_maneticsusep <- read_csv(gitcom6)
 Elwood_Gose_maneticsusep <- Elwood_Gose_maneticsusep %>% filter(!Depth<0) # exclude values above the Zero datum of Toomey (1993)
 # add new ages from age-depth model
 times_maneticsusep<-Bacon.hist(seq(from = 0, to = 300, by = 1)) # V1 = min, V2 = max, V3 = median, V4 = mean
@@ -1182,7 +1189,8 @@ Elwood_Gose_maneticsusep <- Elwood_Gose_maneticsusep %>%
   )
 
 # titanium values from Sun et al. 2021
-Paleoclim_data_Ti <- read_csv("Paleoclim_data_Ti.csv")
+gitcom7 <- curl("https://raw.githubusercontent.com/TIMAVID/Changes-in-a-Central-Texas-lizard-community/refs/heads/main/Paleoclim_data_Ti.csv")
+Paleoclim_data_Ti <- read_csv(gitcom7)
 # add new ages from age-depth model
 times_Ti <-Bacon.hist(Paleoclim_data_Ti$AvgDepth) # V1 = min, V2 = max, V3 = median, V4 = mean
 times_Ti <- data.frame(times_Ti, Depth = Paleoclim_data_Ti$AvgDepth)
@@ -1194,7 +1202,8 @@ Paleoclim_data_Ti <- Paleoclim_data_Ti %>%
   )
 
 # fossil mammal abundances from Toomey 1993
-Mammal_Toomey_NISP <- read_csv("Mammal_Toomey_NISP.csv")
+gitcom8 <- curl("https://raw.githubusercontent.com/TIMAVID/Changes-in-a-Central-Texas-lizard-community/refs/heads/main/Mammal_Toomey_NISP.csv")
+Mammal_Toomey_NISP <- read_csv(gitcom8)
 
 # strontium values from Cook et al. 2003
 Cooke_strontium <- read_csv("Cooke_strontium.csv")
